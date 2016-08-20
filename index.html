@@ -6,25 +6,26 @@ layout: default
 </div> -->
 <div class="posts">
   <div class="content full-bleed" id="recent-posts">
-  {% for post in site.posts limit:50 %}<a
-    href="{{ post.url }}" class="post-excerpt{% if post.photo_url %} photo{% endif %}">
-      <div class="padded-content">
-        <div class="title">{{ post.title }}</div>
-      {% if post.photo_url %}
-        <div class="image" style="background-image:url('{{ post.photo_url }}')"></div>
-      {% else %}
-        <!-- <div class="title">{{ post.title }}</div> -->
-        <info datetime="{{ page.date | date: "%Y-%m-%d" }}">
-          {{ post.date | date: "%b %Y" }}
-        </info>
-        {% if post.description %}
-        <span class="body">{{ post.description | markdownify }}</span>
-        {% else %}
-        <span class="body">{{ post.excerpt | strip_html }}</span>
-        {% endif %}
-      {% endif %}<!-- post.photo_url -->
-      </div>
-    </a>{% endfor %}
+    {% for post in site.posts limit:50 %}
+      <a href="{{ post.url }}" class="post-excerpt{% if post.photo_url %} photo{% endif %}">
+        <div class="padded-content">
+          <div class="title">{{ post.title }}</div>
+          {% if post.photo_url %}
+            <div class="image" style="background-image:url('{{ post.photo_url }}')"></div>
+          {% else %}
+          <!-- <div class="title">{{ post.title }}</div> -->
+            <info datetime="{{ page.date | date: "%Y-%m-%d" }}">
+              {{ post.date | date: "%b %Y" }}
+            </info>
+            {% if post.description %}
+              <span class="body">{{ post.description | markdownify }}</span>
+            {% else %}
+              <span class="body">{{ post.excerpt | strip_html }}</span>
+            {% endif %}
+          {% endif %}<!-- post.photo_url -->
+        </div>
+      </a>
+    {% endfor %}
     <div class="breaker"></div>
     <div class="end">
       <a href="/archive/">More...</a>
@@ -45,7 +46,7 @@ function f(){
 
   var posts = document.getElementById('recent-posts');
   var childNodes = posts.childNodes, i, L = childNodes.length, node, h,
-      col_width, col0_y, col1_y, col1_x,
+      col_width, col0_y, col1_y, col1_x, onlyPost = true,
       origin = {x:0, y:0}, node_count = 0, is_col0, row0_max_y = 0;
 
   posts.style.position = (columns === 1) ? null : 'relative';
@@ -68,7 +69,15 @@ function f(){
         node.style.width = null;
         continue;
       }
+      var nextNode = null;
+      if (onlyPost) {
+        nextNode = childNodes[i + 2];
+      }
       node.style.position = 'absolute';
+      if (onlyPost && nextNode.className == 'breaker') {
+        onlyPost = false;
+        node.style.position = 'relative';
+      }
       if (col0_y === undefined) {
         origin.x = node.offsetLeft;
         origin.y = node.offsetTop;
