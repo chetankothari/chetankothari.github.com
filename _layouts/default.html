@@ -13,19 +13,14 @@
     <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" media="screen, projection" href="/res/screen.css" type="text/css">
     <link rel="stylesheet" media="print" href="/res/print.css" type="text/css">
-    <link rel="alternate" type="application/atom+xml" title="Rasmus Andersson" href="/atom.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="/res/apple-touch-icon-57x57-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/res/apple-touch-icon-{% if page.ios_app_name %}{{page.ios_app_name}}-{% endif %}72x72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/res/apple-touch-icon-114x114-precomposed.png">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@rsms">
     {% if page.ios_app_name %}
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     {% endif %}
-    <meta property="fb:admins" content="728642302">
-    <meta property="fb:app_id" content="38027689216">
     {% if page.title %}
     <meta property="og:title" content="{{ page.title }}">
       {% if page.description %}
@@ -66,13 +61,6 @@
       {{ content }}
     <!--/div-->
 
-    {% if page.fb_comments or page.comments %}
-    <!--div class="content sub">
-      <h2 id="comments">Comments</h2>
-      <div class="fb-comments" data-href="//rsms.me{{ page.url }}" data-num-posts="{{ page.fb_comments }}" data-width="550" data-font="arial"></div>
-    </div-->
-    {% endif %}
-
     {% if paginator.page %}
     <div id="paginator" class="content">
       {% if paginator.next_page %}
@@ -95,7 +83,6 @@
     {% endunless %}
 
     {% include highlight.html %}
-    {% include analytics.html %}
     <script>for (var k in window.initFuncs) { window.initFuncs[k](); } delete window.initFuncs;</script>
   </body>
 </html>
