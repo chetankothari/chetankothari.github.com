@@ -58,8 +58,6 @@
     <header>
       <h1 class="logo" onclick="document.location.href='/';"><a href="/"><img src="/res/signature-2-2.png" width="160" height="50" alt="Signature"></a></h1>
       <ul class="navigation">
-        <li><a href="/photos/"{% if page.url contains "/photos/" %}class="active"{% endif %} title="A selection of recent photography">Photography</a></li>
-        <li><a href="/projects/"{% if page.url contains "/projects/" %}class="active"{% endif %} title="Projects I am or was involved in">Projects</a></li>
         <li><a href="/archive/"{% if page.url contains "/archive/" %}class="active"{% endif %} title="Archived articles">Archive</a></li>
         <li><a href="/about/"{% if page.url contains "/about/" %}class="active"{% endif %}>About me</a></li>
       </ul>
@@ -67,14 +65,14 @@
     <!--div class="wrapper content"-->
       {{ content }}
     <!--/div-->
-    
+
     {% if page.fb_comments or page.comments %}
     <!--div class="content sub">
       <h2 id="comments">Comments</h2>
       <div class="fb-comments" data-href="//rsms.me{{ page.url }}" data-num-posts="{{ page.fb_comments }}" data-width="550" data-font="arial"></div>
     </div-->
     {% endif %}
-    
+
     {% if paginator.page %}
     <div id="paginator" class="content">
       {% if paginator.next_page %}
@@ -85,7 +83,7 @@
       {% endif %}
     </div>
     {% endif %}
-    
+
     {% unless page.no_footer %}
     <footer>
       <p>
@@ -95,7 +93,7 @@
       </p>
     </footer>
     {% endunless %}
-    
+
     {% include highlight.html %}
     {% include analytics.html %}
     <script>for (var k in window.initFuncs) { window.initFuncs[k](); } delete window.initFuncs;</script>
